@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Редактирование{% else %}Создание{% endif %} рекламной кампании{% endblock %}
+
+{% block content %}
+    <h1>{% if object %}Редактирование{% else %}Создание{% endif %} рекламной кампании</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+            <a href="{% if object %}{% url 'campaign_detail' object.pk %}{% else %}{% url 'campaign_list' %}{% endif %}" class="btn">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

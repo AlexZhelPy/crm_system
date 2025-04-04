@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System - {% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        .user-info {
+            float: right;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .btn-danger {
+            background: #e74c3c;
+        }
+        .btn-success {
+            background: #2ecc71;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .alert {
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .warning {
+            color: #e67e22;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fef9e7;
+            border-left: 4px solid #f1c40f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{% url 'service_list' %}">Услуги</a>
+            <a href="{% url 'campaign_list' %}">Рекламные кампании</a>
+            <a href="{% url 'lead_list' %}">Потенциальные клиенты</a>
+            <a href="{% url 'contract_list' %}">Контракты</a>
+            <a href="{% url 'client_list' %}">Клиенты</a>
+            <a href="{% url 'campaign_stats' %}">Статистика</a>
+
+            <div class="user-info">
+                {% if user.is_authenticated %}
+                    Здравствуйте, {{ user.username }} ({{ user.get_role_display }}) |
+                    <a href="{% url 'logout' %}">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Войти</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

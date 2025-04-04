@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ campaign.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ campaign.name }}</h1>
+    <p><strong>Услуга:</strong> {{ campaign.service }}</p>
+    <p><strong>Канал продвижения:</strong> {{ campaign.channel }}</p>
+    <p><strong>Бюджет:</strong> {{ campaign.budget }} ₽</p>
+    <p><strong>Дата создания:</strong> {{ campaign.created_at|date:"d.m.Y H:i" }}</p>
+
+    <div class="actions">
+        <a href="{% url 'campaign_update' campaign.pk %}" class="btn">Редактировать</a>
+        <a href="{% url 'campaign_delete' campaign.pk %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'campaign_list' %}" class="btn">Назад к списку</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование клиента {{ client.lead.full_name }}{% endblock %}
+
+{% block content %}
+    <h1>Редактирование клиента: {{ client.lead.full_name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+            <a href="{% url 'client_detail' client.pk %}" class="btn">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}CRM System{% endblock %}
+
+{% block content %}
+    <h1>Welcome to CRM System</h1>
+
+    <div class="dashboard">
+        {% if user.is_authenticated %}
+        <div class="dashboard-item">
+            <h2>Your Role: {{ user.get_role_display }}</h2>
+            <p>Welcome back, {{ user.username }}!</p>
+            <a href="{% url 'service_list' %}" class="btn">Go to Dashboard</a>
+        </div>
+        {% else %}
+        <div class="dashboard-item">
+            <h2>Please Login</h2>
+            <a href="{% url 'login' %}" class="btn">Login</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <style>
+        .dashboard {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .dashboard-item {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock %}

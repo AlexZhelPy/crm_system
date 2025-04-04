@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление потенциального клиента{% endblock %}
+
+{% block content %}
+    <h1>Удаление потенциального клиента</h1>
+    <p>Вы уверены, что хотите удалить "{{ object.name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="btn btn-danger">Подтвердить удаление</button>
+            <a href="{% url 'lead_detail' object.pk %}" class="btn">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

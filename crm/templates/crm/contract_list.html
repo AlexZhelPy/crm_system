@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Контракты{% endblock %}
+
+{% block content %}
+    <h1>Список контрактов</h1>
+    <a href="{% url 'contract_create' %}" class="btn btn-success">Создать контракт</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Услуга</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+                <th>Сумма</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contract in contracts %}
+            <tr>
+                <td><a href="{% url 'contract_detail' contract.pk %}">{{ contract.name }}</a></td>
+                <td>{{ contract.service }}</td>
+                <td>{{ contract.start_date|date:"d.m.Y" }}</td>
+                <td>{{ contract.end_date|date:"d.m.Y" }}</td>
+                <td>{{ contract.amount }} ₽</td>
+                <td>
+                    <a href="{% url 'contract_update' contract.pk %}" class="btn">Редактировать</a>
+                    <a href="{% url 'contract_delete' contract.pk %}" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Нет доступных контрактов</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ service.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ service.name }}</h1>
+    <p><strong>Описание:</strong> {{ service.description }}</p>
+    <p><strong>Цена:</strong> {{ service.price }} ₽</p>
+    <p><strong>Дата создания:</strong> {{ service.created_at|date:"d.m.Y H:i" }}</p>
+    <p><strong>Последнее обновление:</strong> {{ service.updated_at|date:"d.m.Y H:i" }}</p>
+
+    <div class="actions">
+        <a href="{% url 'service_update' service.pk %}" class="btn">Редактировать</a>
+        <a href="{% url 'service_delete' service.pk %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'service_list' %}" class="btn">Назад к списку</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Клиент {{ client.lead.full_name }}{% endblock %}
+
+{% block content %}
+<h1>Информация о клиенте</h1>
+
+<p><strong>ФИО:</strong> {{ client.lead.full_name }}</p>
+<p><strong>Контракт:</strong> {{ client.contract }}</p>
+<p><strong>Дата создания:</strong> {{ client.created_at|date:"d.m.Y H:i" }}</p>
+<p><strong>Дата обновления:</strong> {{ client.updated_at|date:"d.m.Y H:i" }}</p>
+
+<div class="actions">
+    <a href="{% url 'client_update' client.pk %}" class="btn">Редактировать</a>
+    <a href="{% url 'client_delete' client.pk %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'client_list' %}" class="btn">Назад к списку клиентов</a>
+</div>
+{% endblock %}

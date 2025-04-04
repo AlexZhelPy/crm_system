@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Потенциальный клиент {{ lead.full_name }}{% endblock %}
+
+{% block content %}
+    <h1>Потенциальный клиент: {{ lead.full_name }}</h1>
+
+    <p><strong>Телефон:</strong> {{ lead.phone }}</p>
+    <p><strong>Email:</strong> {{ lead.email }}</p>
+    <p><strong>Рекламная кампания:</strong> {{ lead.campaign }}</p>
+    <p><strong>Дата создания:</strong> {{ lead.created_at|date:"d.m.Y H:i" }}</p>
+    <p><strong>Статус:</strong> {% if lead.is_converted %}Преобразован в клиента{% else %}Не преобразован{% endif %}</p>
+
+    <div class="actions">
+        <a href="{% url 'lead_update' lead.pk %}" class="btn">Редактировать</a>
+        <a href="{% url 'lead_delete' lead.pk %}" class="btn btn-danger">Удалить</a>
+        {% if not lead.is_converted %}
+            <a href="{% url 'lead_convert' lead.pk %}" class="btn btn-success">Преобразовать в клиента</a>
+        {% endif %}
+        <a href="{% url 'lead_list' %}" class="btn">Назад к списку</a>
+    </div>
+{% endblock %}

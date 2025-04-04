@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление клиента {{ client.lead.full_name }}{% endblock %}
+
+{% block content %}
+    <h1>Удаление клиента</h1>
+    <p>Вы уверены, что хотите удалить клиента "{{ client.lead.full_name }}"?</p>
+    <p class="warning">Примечание: При удалении клиента соответствующий потенциальный клиент будет снова доступен для конвертации.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="btn btn-danger">Подтвердить удаление</button>
+            <a href="{% url 'client_detail' client.pk %}" class="btn">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

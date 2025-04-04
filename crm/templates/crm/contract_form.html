@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Редактирование{% else %}Создание{% endif %} контракта{% endblock %}
+
+{% block content %}
+    <h1>{% if object %}Редактирование{% else %}Создание{% endif %} контракта</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+            <a href="{% if object %}{% url 'contract_detail' object.pk %}{% else %}{% url 'contract_list' %}{% endif %}" class="btn">Отмена</a>
+        </div>
+    </form>
+{% endblock %}
