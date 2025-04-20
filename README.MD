@@ -36,7 +36,7 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone <ссылка-на-репозиторий>
+   git clone git@github.com:AlexZhelPy/crm_system.git
    cd crm_system
    
 2. Создайте и активируйте виртуальное окружение:
