@@ -1,12 +1,12 @@
 """
 Модуль models для работы с потенциальными клиентами (лидами).
+
 Содержит модель Lead для хранения информации о потенциальных клиентах.
 """
 
-from django.db import models
 from .campaigns import Campaign
+from django.db import models
 from typing import ClassVar
-
 
 class Lead(models.Model):
     """
@@ -36,5 +36,6 @@ class Lead(models.Model):
 
     class Meta:
         """Мета-класс для дополнительных настроек модели."""
-        verbose_name: ClassVar[str] = 'Potential Client'
-        verbose_name_plural: ClassVar[str] = 'Potential Clients'
+
+        verbose_name: ClassVar[str] = "Potential Client"
+        verbose_name_plural: ClassVar[str] = "Potential Clients"

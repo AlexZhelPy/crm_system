@@ -1,11 +1,11 @@
 """
 Модуль models для работы с услугами.
+
 Содержит модель Service для хранения информации об услугах компании.
 """
 
 from django.db import models
 from typing import ClassVar
-
 
 class Service(models.Model):
     """
@@ -31,5 +31,6 @@ class Service(models.Model):
 
     class Meta:
         """Мета-класс для дополнительных настроек модели."""
-        verbose_name: ClassVar[str] = 'Service'
-        verbose_name_plural: ClassVar[str] = 'Services'
+
+        verbose_name: ClassVar[str] = "Service"
+        verbose_name_plural: ClassVar[str] = "Services"

@@ -1,12 +1,12 @@
 """
 Модуль models для работы с договорами.
+
 Содержит модель Contract для хранения информации о договорах с клиентами.
 """
 
-from django.db import models
 from .services import Service
+from django.db import models
 from typing import ClassVar
-
 
 class Contract(models.Model):
     """
@@ -25,7 +25,7 @@ class Contract(models.Model):
 
     name: str = models.CharField(max_length=255)
     service: models.ForeignKey = models.ForeignKey(Service, on_delete=models.PROTECT)
-    document: models.FileField = models.FileField(upload_to='contracts/')
+    document: models.FileField = models.FileField(upload_to="contracts/")
     start_date: models.DateField = models.DateField()
     end_date: models.DateField = models.DateField()
     amount: models.DecimalField = models.DecimalField(max_digits=10, decimal_places=2)
@@ -38,5 +38,6 @@ class Contract(models.Model):
 
     class Meta:
         """Мета-класс для дополнительных настроек модели."""
-        verbose_name: ClassVar[str] = 'Contract'
-        verbose_name_plural: ClassVar[str] = 'Contracts'
+
+        verbose_name: ClassVar[str] = "Contract"
+        verbose_name_plural: ClassVar[str] = "Contracts"

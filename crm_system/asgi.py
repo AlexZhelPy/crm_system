@@ -7,10 +7,9 @@ For more information on this file, see
 https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
+from django.core.asgi import get_asgi_application
 import os
 
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm_system.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crm_system.settings")
 
 application = get_asgi_application()

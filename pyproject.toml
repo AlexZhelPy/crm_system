@@ -1,0 +1,32 @@
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C", "N", "D", "S", "T", "Q"]
+ignore = ["D203", "D212", "D213", "D406", "D407", "D413"]
+
+[tool.ruff.lint.per-file-ignores]
+"crm/migrations/*" = ["D1", "E501"]
+"accounts/migrations/*" = ["D1", "E501"]
+"services/migrations/*" = ["D1", "E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["crm"]
+required-imports = []
+combine-as-imports = true
+split-on-trailing-comma = true
+order-by-type = true
+force-sort-within-sections = true
+case-sensitive = false
+force-wrap-aliases = false
+lines-after-imports = 1
+lines-between-types = 1
+section-order = [
+    "FUTURE",
+    "STDLIB",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
+    "TYPING"
+]

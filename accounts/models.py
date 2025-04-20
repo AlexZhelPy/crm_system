@@ -3,10 +3,9 @@
 Содержит модели пользователей системы и связанные с ними настройки.
 """
 
+
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-from typing import Any, ClassVar, Literal, Type
-
 
 class User(AbstractUser):
     """Модель пользователя системы с расширенными возможностями.
@@ -19,31 +18,27 @@ class User(AbstractUser):
 
     class Role(models.TextChoices):
         """Роли пользователей в системе."""
-        ADMIN = 'ADMIN', 'Administrator'
-        OPERATOR = 'OPERATOR', 'Operator'
-        MARKETER = 'MARKETER', 'Marketer'
-        MANAGER = 'MANAGER', 'Manager'
 
-    role: str = models.CharField(
-        max_length=10,
-        choices=Role.choices,
-        default=Role.OPERATOR
-    )
+        ADMIN = "ADMIN", "Administrator"
+        OPERATOR = "OPERATOR", "Operator"
+        MARKETER = "MARKETER", "Marketer"
+        MANAGER = "MANAGER", "Manager"
+
+    role: str = models.CharField(max_length=10, choices=Role.choices, default=Role.OPERATOR)
 
     groups: models.ManyToManyField = models.ManyToManyField(
         Group,
-        related_name='accounts_user_set',
+        related_name="accounts_user_set",
         blank=True,
-        help_text='Группы, к которым принадлежит пользователь. '
-                  'Пользователь получает все права своих групп.',
-        verbose_name='groups',
+        help_text="Группы, к которым принадлежит пользователь. Пользователь получает все права своих групп.",
+        verbose_name="groups",
     )
     user_permissions: models.ManyToManyField = models.ManyToManyField(
         Permission,
-        related_name='accounts_user_set',
+        related_name="accounts_user_set",
         blank=True,
-        help_text='Конкретные права для этого пользователя.',
-        verbose_name='user permissions',
+        help_text="Конкретные права для этого пользователя.",
+        verbose_name="user permissions",
     )
 
     @property
@@ -68,8 +63,9 @@ class User(AbstractUser):
 
     class Meta:
         """Мета-класс для настройки модели User."""
-        verbose_name: str = 'Пользователь'
-        verbose_name_plural: str = 'Пользователи'
+
+        verbose_name: str = "Пользователь"
+        verbose_name_plural: str = "Пользователи"
 
     def __str__(self) -> str:
         """Строковое представление пользователя."""

@@ -1,23 +1,24 @@
 """
 Модель Campaign представляет маркетинговую кампанию в системе.
+
 Содержит информацию о названии, связанной услуге, канале продвижения и бюджете.
 """
 
-from django.db import models
 from .services import Service
+from django.db import models
 from typing import ClassVar
 
 class Campaign(models.Model):
     """
-        Модель маркетинговой кампании.
+    Модель маркетинговой кампании.
 
-        Атрибуты:
-            name (str): Название кампании
-            service (Service): Связанная услуга
-            channel (str): Канал продвижения
-            budget (Decimal): Бюджет кампании
-            created_at (DateTime): Дата создания
-            updated_at (DateTime): Дата последнего обновления
+    Атрибуты:
+        name (str): Название кампании
+        service (Service): Связанная услуга
+        channel (str): Канал продвижения
+        budget (Decimal): Бюджет кампании
+        created_at (DateTime): Дата создания
+        updated_at (DateTime): Дата последнего обновления
     """
 
     name: str = models.CharField(max_length=255)
@@ -34,5 +35,6 @@ class Campaign(models.Model):
     # pylint: disable=too-few-public-methods
     class Meta:
         """Мета-класс для дополнительных настроек модели."""
-        verbose_name: ClassVar[str] = 'Campaign'
-        verbose_name_plural: ClassVar[str] = 'Campaigns'
+
+        verbose_name: ClassVar[str] = "Campaign"
+        verbose_name_plural: ClassVar[str] = "Campaigns"
